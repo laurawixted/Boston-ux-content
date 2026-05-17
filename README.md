@@ -1,1 +1,1 @@
-Website for the Boston UX Content Meetups.
+Website for the Boston UX Content meetups.
