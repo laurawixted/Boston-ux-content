@@ -340,6 +340,7 @@
       gap: 0;
       overflow: hidden;
       transition: box-shadow 0.15s;
+      cursor: pointer;
     }
     .event-row:hover { box-shadow: 0 4px 20px rgba(30,60,120,0.08); }
 
@@ -357,7 +358,7 @@
     .event-row-day { font-family: var(--serif); font-size: 2rem; line-height: 1; }
     .event-row-year { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px; }
 
-    .event-row-info { padding: 1.1rem 1.25rem; }
+    .event-row-info { padding: 1.1rem 1.25rem; min-width: 0; overflow-wrap: break-word; }
 
     .event-row-info h3 {
       font-family: var(--serif);
@@ -397,6 +398,51 @@
       transition: background 0.15s, color 0.15s;
     }
     .btn-sm:hover { background: var(--blue); color: white; }
+
+    @media (max-width: 640px) {
+      .event-row {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+      }
+
+      .event-row-date {
+        padding: 0.75rem;
+        grid-column: 1 / -1;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .event-row-info {
+        padding: 1rem 1.25rem;
+        min-width: 0;
+        overflow-wrap: break-word;
+        word-break: break-word;
+      }
+
+      .event-row-info h3 { overflow-wrap: break-word; word-break: break-word; }
+
+      .event-row-meta {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        min-width: 0;
+      }
+
+      .event-row-meta span { white-space: normal; overflow-wrap: break-word; word-break: break-word; }
+
+      .event-row-action {
+        padding: 1rem 1.25rem;
+        border-top: 1px solid var(--border);
+        grid-column: 1 / -1;
+      }
+
+      .btn-sm {
+        background: var(--blue);
+        color: white;
+        border-color: var(--blue);
+      }
+
+      .page-body { padding: 2rem 1.25rem; }
+      .page-header { padding: 2rem 1.25rem; }
+    }
 
     .events-section-label {
       font-size: 11px;
@@ -782,7 +828,7 @@
       <div class="events-section-label">Past events</div>
 
       <div class="events-list">
-        <div class="event-row" style="opacity:0.75;">
+        <div class="event-row">
           <div class="event-row-date" style="background:var(--text-mid);">
             <div class="event-row-month">Apr</div>
             <div class="event-row-day">30</div>
@@ -800,7 +846,7 @@
           </div>
         </div>
 
-        <div class="event-row" style="opacity:0.75;">
+        <div class="event-row">
           <div class="event-row-date" style="background:var(--text-mid);">
             <div class="event-row-month">Feb</div>
             <div class="event-row-day">12</div>
@@ -821,7 +867,7 @@
           </div>
         </div>
 
-        <div class="event-row" style="opacity:0.75;">
+        <div class="event-row">
           <div class="event-row-date" style="background:var(--text-mid);">
             <div class="event-row-month">Dec</div>
             <div class="event-row-day">17</div>
@@ -919,7 +965,7 @@
       <div class="contact-section">
         <h2>Join our Slack</h2>
         <p>Stay connected between meetups with discussions and community updates.</p>
-        <a href="https://join.slack.com/t/bostoncuxontent/shared_invite/zt-3tf2a01qe-3nrMkKt1LsWN1dVHzE3ArQ" target="_blank" class="btn-link slack-link"><img src="slack-logo.png" alt="Slack logo" />Join Slack →</a>
+        <a href="https://join.slack.com/t/bostoncuxontent/shared_invite/zt-3yydsgped-nefE6WnZR3MtWLZqKL7OAg" target="_blank" class="btn-link slack-link"><img src="slack-logo.png" alt="Slack logo" />Join Slack →</a>
       </div>
 
       <div class="contact-section">
@@ -965,8 +1011,6 @@
     panel.classList.toggle('open');
     btn.textContent = isOpen ? 'View details' : 'Hide details';
     btn.classList.toggle('active', !isOpen);
-    // restore opacity on row when expanded
-    panel.closest('.event-row').style.opacity = isOpen ? '0.75' : '1';
   }
 
   function toggleNav() {
@@ -988,6 +1032,22 @@
     window.scrollTo(0, 0);
     return false;
   }
+
+  document.addEventListener('click', e => {
+    const nav = document.querySelector('nav');
+    if (nav.classList.contains('nav-open') && !e.target.closest('nav')) {
+      nav.classList.remove('nav-open');
+      document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.querySelectorAll('.event-row').forEach(row => {
+    row.style.cursor = 'pointer';
+    row.addEventListener('click', e => {
+      if (e.target.closest('.btn-sm, a, .event-recap')) return;
+      row.querySelector('.btn-sm')?.click();
+    });
+  });
 </script>
 </body>
 </html>
