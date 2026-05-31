@@ -709,7 +709,7 @@
 
 <!-- ── TOP NAV ── -->
 <nav>
-  <a class="nav-logo-mark" href="#" onclick="navigate('home')">
+  <a class="nav-logo-mark" href="#" onclick="return navigate('home')">
     <!-- Boston skyline outline logo -->
     <svg class="nav-skyline" viewBox="0 0 60 34" fill="none" xmlns="http://www.w3.org/2000/svg">
       <polyline
@@ -730,9 +730,9 @@
     </button>
 
     <ul class="nav-links">
-      <li><a href="#" id="nav-events" onclick="navigate('events')">Meetups</a></li>
-      <li><a href="#" id="nav-about" onclick="navigate('about')">About</a></li>
-      <li><a href="#" id="nav-contact" onclick="navigate('contact')">Contact</a></li>
+      <li><a href="#" id="nav-events" onclick="return navigate('events')">Meetups</a></li>
+      <li><a href="#" id="nav-about" onclick="return navigate('about')">About</a></li>
+      <li><a href="#" id="nav-contact" onclick="return navigate('contact')">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -754,7 +754,7 @@
     </div>
 
     <div class="home-cards">
-      <a href="#" class="nav-card" onclick="navigate('events')">
+      <a href="#" class="nav-card" onclick="return navigate('events')">
         <div class="nav-card-icon">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="6" width="26" height="23" rx="3"/>
@@ -771,7 +771,7 @@
         <div class="nav-card-title">Meetups</div>
         <div class="nav-card-desc">Browse upcoming meetups and past sessions. All events are free and open to everyone.</div>
       </a>
-      <a href="#" class="nav-card" onclick="navigate('about')">
+      <a href="#" class="nav-card" onclick="return navigate('about')">
         <div class="nav-card-icon">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="10" r="4.5"/>
@@ -783,7 +783,7 @@
         <div class="nav-card-title">About</div>
         <div class="nav-card-desc">Learn who we are, what we value, and the volunteers who keep this community running.</div>
       </a>
-      <a href="#" class="nav-card" onclick="navigate('contact')">
+      <a href="#" class="nav-card" onclick="return navigate('contact')">
         <div class="nav-card-icon">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="7" width="28" height="19" rx="3"/>
@@ -1020,18 +1020,32 @@
     btn.setAttribute('aria-expanded', open);
   }
 
-  function navigate(page) {
+  function showPage(page) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
     document.getElementById('page-' + page).classList.add('active');
     const navEl = document.getElementById('nav-' + page);
     if (navEl) navEl.classList.add('active');
-    // close mobile menu on navigation
     document.querySelector('nav').classList.remove('nav-open');
     document.querySelector('.nav-toggle').setAttribute('aria-expanded', 'false');
     window.scrollTo(0, 0);
+  }
+
+  function navigate(page) {
+    history.pushState({ page }, '', '#' + page);
+    showPage(page);
     return false;
   }
+
+  window.addEventListener('popstate', e => {
+    const page = e.state?.page || 'home';
+    showPage(page);
+  });
+
+  // Set initial history state so back button works from the first page
+  const initialPage = location.hash.replace('#', '') || 'home';
+  history.replaceState({ page: initialPage }, '', '#' + initialPage);
+  showPage(initialPage);
 
   document.addEventListener('click', e => {
     const nav = document.querySelector('nav');
