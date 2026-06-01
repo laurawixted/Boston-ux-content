@@ -709,7 +709,7 @@
 
 <!-- ── TOP NAV ── -->
 <nav>
-  <a class="nav-logo-mark" href="#" onclick="return navigate('home')">
+  <a class="nav-logo-mark" href="/" onclick="return navigate('home')">
     <!-- Boston skyline outline logo -->
     <svg class="nav-skyline" viewBox="0 0 60 34" fill="none" xmlns="http://www.w3.org/2000/svg">
       <polyline
@@ -730,9 +730,9 @@
     </button>
 
     <ul class="nav-links">
-      <li><a href="#" id="nav-events" onclick="return navigate('events')">Meetups</a></li>
-      <li><a href="#" id="nav-about" onclick="return navigate('about')">About</a></li>
-      <li><a href="#" id="nav-contact" onclick="return navigate('contact')">Contact</a></li>
+      <li><a href="/events" id="nav-events" onclick="return navigate('events')">Meetups</a></li>
+      <li><a href="/about" id="nav-about" onclick="return navigate('about')">About</a></li>
+      <li><a href="/contact" id="nav-contact" onclick="return navigate('contact')">Contact</a></li>
     </ul>
   </div>
 </nav>
@@ -754,7 +754,7 @@
     </div>
 
     <div class="home-cards">
-      <a href="#" class="nav-card" onclick="return navigate('events')">
+      <a href="/events" class="nav-card" onclick="return navigate('events')">
         <div class="nav-card-icon">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="6" width="26" height="23" rx="3"/>
@@ -771,7 +771,7 @@
         <div class="nav-card-title">Meetups</div>
         <div class="nav-card-desc">Browse upcoming meetups and past sessions. All events are free and open to everyone.</div>
       </a>
-      <a href="#" class="nav-card" onclick="return navigate('about')">
+      <a href="/about" class="nav-card" onclick="return navigate('about')">
         <div class="nav-card-icon">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="10" r="4.5"/>
@@ -783,7 +783,7 @@
         <div class="nav-card-title">About</div>
         <div class="nav-card-desc">Learn who we are, what we value, and the volunteers who keep this community running.</div>
       </a>
-      <a href="#" class="nav-card" onclick="return navigate('contact')">
+      <a href="/contact" class="nav-card" onclick="return navigate('contact')">
         <div class="nav-card-icon">
           <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="7" width="28" height="19" rx="3"/>
@@ -1032,7 +1032,8 @@
   }
 
   function navigate(page) {
-    history.pushState({ page }, '', '#' + page);
+    const path = page === 'home' ? '/' : '/' + page;
+    history.pushState({ page }, '', path);
     showPage(page);
     return false;
   }
@@ -1042,9 +1043,14 @@
     showPage(page);
   });
 
-  // Set initial history state so back button works from the first page
-  const initialPage = location.hash.replace('#', '') || 'home';
-  history.replaceState({ page: initialPage }, '', '#' + initialPage);
+  // Restore URL saved by 404.html after GitHub Pages redirect
+  const redirectUrl = sessionStorage.redirect;
+  delete sessionStorage.redirect;
+  if (redirectUrl) {
+    history.replaceState(null, null, new URL(redirectUrl).pathname);
+  }
+  const initialPage = location.pathname.replace(/^\//, '') || 'home';
+  history.replaceState({ page: initialPage }, '', location.pathname);
   showPage(initialPage);
 
   document.addEventListener('click', e => {
