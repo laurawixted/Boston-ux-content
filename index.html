@@ -426,7 +426,13 @@
         background: var(--blue);
         color: white;
         border-color: var(--blue);
+        padding: 12px 14px;
+        min-height: 44px;
       }
+
+      .stat-row { grid-template-columns: 1fr; }
+
+      .form-row-2 { grid-template-columns: 1fr; }
 
       .page-body { padding: 2rem 1.25rem; }
       .page-header { padding: 2rem 1.25rem; }
@@ -805,10 +811,10 @@
       <div class="events-list">
         <div class="event-row">
           <div class="event-row-info">
-            <div class="event-row-meta"><span>Jul 29, 2026</span><span>·</span><span>6 PM ET</span><span>·</span><span>Aeronaut Brewing Company, Somerville</span></div>
-            <h3>Summer Happy Hour</h3>
+            <div class="event-row-meta"><span>Jul 29, 2026</span><span>·</span><span>5:30-7:30 PM ET</span><span>·</span><span>Democracy Brewing, 35 Temple Place, Boston</span></div>
+            <h3>Summer Happy Hour!</h3>
           </div>
-          <div class="event-row-action"><button class="btn-sm" type="button" disabled>RSVP</button></div>
+          <div class="event-row-action"><a href="https://www.eventbrite.com/e/1992975882514?aff=oddtdtcreator" target="_blank"><button class="btn-sm" type="button" style="position:relative;padding-right:20px">RSVP <svg width="8" height="8" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;top:4px;right:4px"><path d="M7 3H3a1 1 0 00-1 1v9a1 1 0 001 1h9a1 1 0 001-1V9"/><path d="M10 2h4v4"/><line x1="14" y1="2" x2="7" y2="9"/></svg></button></a></div>
         </div>
       </div>
 
@@ -850,8 +856,8 @@
           <div class="event-recap" id="recap-2">
             <h4>Details</h4>
             <p>Our second meetup was a big brainstorm and discussion about the purpose of the meetup. We used a Mad Lib exercise—"This group provides (value), (value), and (value) to (who) so they can (impact)"—to clarify our mission and vision.</p>
-            <p>We ran out of time to consolidate our ideas into a final statement, but examining the responses gave us valuable insights into the community's needs and aspirations and could be generalized as follows:</p>
-            <p><i>"The Boston UX Content meetup provides in-person content design workshops, knowledge sharing, and growth opportunities to the Boston area content designers and content adjacent designers so they can grow as content professionals and find community."</i></p>
+            <p>We ran out of time to consolidate our ideas into a final statement, but examining the responses gave us valuable insights into the community's needs and aspirations that could be generalized as follows:</p>
+            <p><i>"The Boston UX Content meetup provides in-person content design workshops, knowledge sharing, and growth opportunities to the Boston area content designers and content-adjacent designers so they can grow as content professionals and find community."</i></p>
           <img src="meetup-feb-12-2026.png" alt="Group photo" class="event-recap-image">
           </div>
         </div>
@@ -886,7 +892,7 @@
   <div class="page" id="page-about">
     <div class="page-header">
       <h1>About us</h1>
-      <p>The Boston UX Content meetup provides in-person content design discussions, workshops, knowledge sharing, and growth opportunities to the Boston area content designers and content adjacent designers so they can grow as content professionals and find community.</p>
+      <p>The Boston UX Content meetup provides in-person content design discussions, workshops, knowledge sharing, and growth opportunities to the Boston area content designers and content-adjacent designers so they can grow as content professionals and find community.</p>
     </div>
 
     <div class="about-grid">
@@ -938,7 +944,7 @@
       <div class="contact-section">
         <h2>Join our Slack</h2>
         <p>Stay connected between meetups with discussions and community updates.</p>
-        <a href="https://join.slack.com/t/bostoncuxontent/shared_invite/zt-3yydsgped-nefE6WnZR3MtWLZqKL7OAg" target="_blank" class="btn-link slack-link"><img src="slack-logo.png" alt="Slack logo" />Join Slack →</a>
+        <a href="https://join.slack.com/t/bostonuxcontent/shared_invite/zt-3yydsgped-nefE6WnZR3MtWLZqKL7OAg" target="_blank" class="btn-link slack-link"><img src="slack-logo.png" alt="Slack logo" />Join Slack →</a>
       </div>
 
       <div class="contact-section">
