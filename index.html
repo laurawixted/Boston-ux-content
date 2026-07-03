@@ -335,28 +335,13 @@
       border-radius: 12px;
       background: white;
       display: grid;
-      grid-template-columns: 80px 1fr auto;
+      grid-template-columns: 1fr auto;
       grid-template-rows: auto auto;
       gap: 0;
-      overflow: hidden;
       transition: box-shadow 0.15s;
       cursor: pointer;
     }
     .event-row:hover { box-shadow: 0 4px 20px rgba(30,60,120,0.08); }
-
-    .event-row-date {
-      background: var(--navy);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem 0.5rem;
-      color: white;
-    }
-
-    .event-row-day { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; color: rgba(255,255,255,0.7); }
-    .event-row-month { font-family: var(--serif); font-size: 1.35rem; line-height: 1; text-transform: uppercase; color: white; }
-    .event-row-year { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px; }
 
     .event-row-info { padding: 1.1rem 1.25rem; min-width: 0; overflow-wrap: break-word; }
 
@@ -396,19 +381,22 @@
       text-decoration: none;
       white-space: nowrap;
       transition: background 0.15s, color 0.15s;
+      appearance: none;
+      -webkit-appearance: none;
+      line-height: normal;
     }
     .btn-sm:hover { background: var(--blue); color: white; }
+    .btn-sm:disabled {
+      color: var(--text-muted);
+      border-color: var(--border);
+      background: var(--warm-off);
+      cursor: default;
+    }
 
     @media (max-width: 640px) {
       .event-row {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto auto;
-      }
-
-      .event-row-date {
-        padding: 0.75rem;
-        grid-column: 1 / -1;
-        border-bottom: 1px solid var(--border);
+        grid-template-rows: auto auto auto;
       }
 
       .event-row-info {
@@ -438,7 +426,13 @@
         background: var(--blue);
         color: white;
         border-color: var(--blue);
+        padding: 12px 14px;
+        min-height: 44px;
       }
+
+      .stat-row { grid-template-columns: 1fr; }
+
+      .form-row-2 { grid-template-columns: 1fr; }
 
       .page-body { padding: 2rem 1.25rem; }
       .page-header { padding: 2rem 1.25rem; }
@@ -459,16 +453,23 @@
       display: none;
       grid-column: 1 / -1;
       background: var(--sky-pale);
-      border-top: 1px solid var(--border);
       padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--border);
+      border-radius: 0 0 11px 11px;
     }
-    .event-recap.open { display: block; }
-    .event-recap p { font-size: 13.5px; color: var(--text-mid); line-height: 1.7; margin-bottom: 0.75rem; }
+    .event-recap p { font-size: 15px; color: var(--text-mid); line-height: 1.75; margin-bottom: 0.75rem; }
     .event-recap p:last-child { margin-bottom: 0; }
     .event-recap strong { color: var(--navy); font-weight: 500; }
     .event-recap h4 { font-family: var(--serif); font-size: 1rem; color: var(--navy); font-weight: 600; margin-bottom: 0.5rem; }
     .event-recap ul { padding-left: 1.5rem; margin-bottom: 0.75rem; }
-    .event-recap li { font-size: 13.5px; color: var(--text-mid); line-height: 1.7; }
+    .event-recap li { font-size: 15px; color: var(--text-mid); line-height: 1.75; }
+    .event-recap-image {
+      width: min(100%, 480px);
+      height: auto;
+      margin: 1rem 0 0;
+      display: block;
+      border-radius: 10px;
+    }
     .btn-sm.active { background: var(--blue); color: white; }
 
     /* ── ABOUT PAGE ── */
@@ -806,80 +807,67 @@
 
     <div class="page-body">
       <div class="events-section-label">Upcoming meetups</div>
+
       <div class="events-list">
-
         <div class="event-row">
-          <div class="event-row-date">
-            <div class="event-row-day">11</div>
-            <div class="event-row-month">Jun</div>
-            <div class="event-row-year">2026</div>
-          </div>
           <div class="event-row-info">
-            <div class="event-row-meta"><span>6:00 PM ET</span><span>·</span><span>In person—Boston Public Library</span><span>·</span><span>Workshop</span></div>
-            <h3>Career support, Part 2: Connecting the dots between your job hunting artifacts</h3>
-            <p>In this meetup, we’ll talk about how to connect the dots between your job-hunting artifacts so they tell a clearer, more consistent story about who you are and the kind of work you do.</p>
+            <div class="event-row-meta"><span>Jul 29, 2026</span><span>·</span><span>5:30-7:30 PM ET</span><span>·</span><span>Democracy Brewing, 35 Temple Place, Boston</span></div>
+            <h3>Summer Happy Hour!</h3>
           </div>
-          <div class="event-row-action"><a href="https://www.eventbrite.com/e/connecting-the-dots-between-your-job-hunting-artifacts-tickets-1989968007880?aff=oddtdtcreator" class="btn-sm">RSVP</a></div>
+          <div class="event-row-action"><a href="https://www.eventbrite.com/e/1992975882514?aff=oddtdtcreator" target="_blank"><button class="btn-sm" type="button" style="position:relative;padding-right:20px">RSVP <svg width="8" height="8" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;top:4px;right:4px"><path d="M7 3H3a1 1 0 00-1 1v9a1 1 0 001 1h9a1 1 0 001-1V9"/><path d="M10 2h4v4"/><line x1="14" y1="2" x2="7" y2="9"/></svg></button></a></div>
         </div>
-
-
       </div>
 
       <div class="events-section-label">Past meetups</div>
 
       <div class="events-list">
         <div class="event-row">
-          <div class="event-row-date" style="background:var(--text-mid);">
-            <div class="event-row-day">30</div>
-            <div class="event-row-month">Apr</div>
-            <div class="event-row-year">2026</div>
-          </div>
           <div class="event-row-info">
-            <div class="event-row-meta"><span>6:00 PM ET</span><span>·</span><span>In person—Boston Public Library</span><span>·</span><span>Discussion</span></div>
-            <h3>Career support: How to land a content design role in 2026</h3>
-            <p>An open, honest, and practical conversation about what it takes to land a content design job in 2026</p>
+            <div class="event-row-meta"><span>Jun 11, 2026</span><span>·</span><span>6 PM ET</span><span>·</span><span>In person—Boston Public Library</span><span>·</span><span>Workshop</span></div>
+            <h3>Career support, part 2: Connecting the dots between your job hunting artifacts</h3>
           </div>
-          <div class="event-row-action"><a href="#" class="btn-sm" onclick="toggleRecap(this, 'recap-1'); return false;">View details</a></div>
+          <div class="event-row-action"><button class="btn-sm" onclick="toggleRecap(this, 'recap-5')">View details</button></div>
+          <div class="event-recap" id="recap-5">
+            <h4>Details</h4>
+            <p>Our 4th UX Content meetup about finding a job in UX was inspiring. Thanks to our brave and talented volunteer, ⭐ <a href="https://www.linkedin.com/in/shivali-m-m/">Shivali Meenakshi Murali</a> ⭐, who walked us through her job hunting artifacts, we swapped stories as candidates and hiring managers to clarify how to make each artifact resonate and how to tie them all together into a cohesive narrative that matches the UX job. We walked away with ideas for how to make our own artifacts better and an earnest desire to continue supporting each other.</p>
+            <img src="meetup-jun-11-2026.png" alt="Photo from the June 11, 2026 meetup" class="event-recap-image">
+          </div>
+        </div>
+
+        <div class="event-row">
+          <div class="event-row-info">
+            <div class="event-row-meta"><span>Apr 30, 2026</span><span>·</span><span>6:00 PM ET</span><span>·</span><span>In person—Boston Public Library</span><span>·</span><span>Discussion</span></div>
+            <h3>Career support: How to land a content design role in 2026</h3>
+          </div>
+          <div class="event-row-action"><button class="btn-sm" onclick="toggleRecap(this, 'recap-1')">View details</button></div>
           <div class="event-recap" id="recap-1">
             <h4>Details</h4>
             <p>Our third meetup was an open, honest, and practical conversation about what it takes to land a content design job in 2026. Attendees shared their experiences, challenges, and strategies for career growth in the field.</p>
-            <img src="meetup-apr-30-2026.png" alt="Photo from the April 30, 2026 meetup" style="max-width: 50%; height: auto; margin: 1em 0; display: block;">
+            <img src="meetup-apr-30-2026.png" alt="Photo from the April 30, 2026 meetup" class="event-recap-image">
           </div>
         </div>
 
         <div class="event-row">
-          <div class="event-row-date" style="background:var(--text-mid);">
-            <div class="event-row-day">12</div>
-            <div class="event-row-month">Feb</div>
-            <div class="event-row-year">2026</div>
-          </div>
           <div class="event-row-info">
-            <div class="event-row-meta"><span>6:00 PM ET</span><span>·</span><span>In person—Peerspace: 705 Cambridge St, Cambridge, MA</span><span>·</span><span>Discussion</span></div>
+            <div class="event-row-meta"><span>Feb 12, 2026</span><span>·</span><span>6:00 PM ET</span><span>·</span><span>In person—Peerspace: 705 Cambridge St, Cambridge, MA</span><span>·</span><span>Discussion</span></div>
             <h3>Shaping what's next</h3>
-            <p>A deeper look at the ideas surfaced during our first gathering to start shaping what this community can become</p>
           </div>
-          <div class="event-row-action"><a href="#" class="btn-sm" onclick="toggleRecap(this, 'recap-2'); return false;">View details</a></div>
+          <div class="event-row-action"><button class="btn-sm" onclick="toggleRecap(this, 'recap-2')">View details</button></div>
           <div class="event-recap" id="recap-2">
             <h4>Details</h4>
             <p>Our second meetup was a big brainstorm and discussion about the purpose of the meetup. We used a Mad Lib exercise—"This group provides (value), (value), and (value) to (who) so they can (impact)"—to clarify our mission and vision.</p>
-            <p>We ran out of time to consolidate our ideas into a final statement, but examining the responses gave us valuable insights into the community's needs and aspirations and could be generalized as follows:</p>
-            <p><i>"The Boston UX Content meetup provides in-person content design workshops, knowledge sharing, and growth opportunities to the Boston area content designers and content adjacent designers so they can grow as content professionals and find community."</i></p>
-          <img src="meetup-feb-12-2026.png" alt="Group photo" style="max-width: 50%; height: auto; margin: 1em 0; display: block;">
+            <p>We ran out of time to consolidate our ideas into a final statement, but examining the responses gave us valuable insights into the community's needs and aspirations that could be generalized as follows:</p>
+            <p><i>"The Boston UX Content meetup provides in-person content design workshops, knowledge sharing, and growth opportunities to the Boston area content designers and content-adjacent designers so they can grow as content professionals and find community."</i></p>
+          <img src="meetup-feb-12-2026.png" alt="Group photo" class="event-recap-image">
           </div>
         </div>
 
         <div class="event-row">
-          <div class="event-row-date" style="background:var(--text-mid);">
-            <div class="event-row-day">17</div>
-            <div class="event-row-month">Dec</div>
-            <div class="event-row-year">2025</div>
-          </div>
           <div class="event-row-info">
-            <div class="event-row-meta"><span>6:00 PM ET</span><span>·</span><span>In person—Boston Public Library</span><span>·</span><span>Talk</span></div>
+            <div class="event-row-meta"><span>Dec 17, 2025</span><span>·</span><span>6:00 PM ET</span><span>·</span><span>In person—Boston Public Library</span><span>·</span><span>Talk</span></div>
             <h3>Kickoff with special guest: Jane Ruffino</h3>
-            <p>Meet fellow UX content professionals and hear Jane Ruffino's talk: Facilitative leadership: "How I stopped trying to fix everything and learned to focus on relationships"</p>
           </div>
-          <div class="event-row-action"><a href="#" class="btn-sm" onclick="toggleRecap(this, 'recap-3'); return false;">View details</a></div>
+          <div class="event-row-action"><button class="btn-sm" onclick="toggleRecap(this, 'recap-3')">View details</button></div>
           <div class="event-recap" id="recap-3">
             <h4>Details</h4>
             <p>We kicked things off with ⭐ Jane Ruffino ⭐, whose talk about facilitation as leadership beautifully reinforced that content is all about relationships.</p>
@@ -892,7 +880,7 @@
               <li>Content-first approach</li>
               <li>Breaking into UX</li>
             </ul>
-            <img src="meetup-dec-17-2025.png" alt="Group photo" style="max-width: 50%; height: auto; margin: 1em 0; display: block;">
+            <img src="meetup-dec-17-2025.png" alt="Group photo" class="event-recap-image">
           </div>
         </div>
       </div>
@@ -904,7 +892,7 @@
   <div class="page" id="page-about">
     <div class="page-header">
       <h1>About us</h1>
-      <p>The Boston UX Content meetup provides in-person content design discussions, workshops, knowledge sharing, and growth opportunities to the Boston area content designers and content adjacent designers so they can grow as content professionals and find community.</p>
+      <p>The Boston UX Content meetup provides in-person content design discussions, workshops, knowledge sharing, and growth opportunities to the Boston area content designers and content-adjacent designers so they can grow as content professionals and find community.</p>
     </div>
 
     <div class="about-grid">
@@ -956,7 +944,7 @@
       <div class="contact-section">
         <h2>Join our Slack</h2>
         <p>Stay connected between meetups with discussions and community updates.</p>
-        <a href="https://join.slack.com/t/bostoncuxontent/shared_invite/zt-3yydsgped-nefE6WnZR3MtWLZqKL7OAg" target="_blank" class="btn-link slack-link"><img src="slack-logo.png" alt="Slack logo" />Join Slack →</a>
+        <a href="https://join.slack.com/t/bostonuxcontent/shared_invite/zt-3yydsgped-nefE6WnZR3MtWLZqKL7OAg" target="_blank" class="btn-link slack-link"><img src="slack-logo.png" alt="Slack logo" />Join Slack →</a>
       </div>
 
       <div class="contact-section">
@@ -998,8 +986,9 @@
 <script>
   function toggleRecap(btn, id) {
     const panel = document.getElementById(id);
-    const isOpen = panel.classList.contains('open');
-    panel.classList.toggle('open');
+    if (!panel) return;
+    const isOpen = panel.style.display === 'block';
+    panel.style.display = isOpen ? '' : 'block';
     btn.textContent = isOpen ? 'View details' : 'Hide details';
     btn.classList.toggle('active', !isOpen);
   }
@@ -1055,7 +1044,7 @@
   document.querySelectorAll('.event-row').forEach(row => {
     row.style.cursor = 'pointer';
     row.addEventListener('click', e => {
-      if (e.target.closest('.btn-sm, a, .event-recap')) return;
+      if (e.target.closest('.btn-sm, a, button, .event-recap')) return;
       row.querySelector('.btn-sm')?.click();
     });
   });
