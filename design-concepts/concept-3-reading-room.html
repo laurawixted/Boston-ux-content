@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Concept 3 — Reading Room · Boston UX Content</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:      #2A241F;  /* warm charcoal-brown, not black */
+    --card:     #382F27;
+    --line:     #4A4037;
+    --paper:    #F3ECDD;  /* warm cream text */
+    --paper-mid:#C9BEA9;
+    --green:    #86A98D;  /* library reading-lamp green */
+    --green-dk: #5E7F65;
+    --brass:    #CBA24B;  /* used sparingly */
+    --serif: 'Fraunces', Georgia, serif;
+    --sans:  'Inter', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--ink); color: var(--paper); line-height: 1.5; }
+  a { color: inherit; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 2.5rem; }
+
+  /* NAV */
+  header { border-bottom: 1px solid var(--line); padding: 1.5rem 0; }
+  .nav-row { display: flex; align-items: center; justify-content: space-between; }
+  .brand { font-family: var(--serif); font-size: 1.15rem; letter-spacing: -0.01em; text-decoration: none; color: var(--paper); }
+  .nav-links { list-style: none; display: flex; gap: 2rem; font-size: 0.85rem; }
+  .nav-links a { text-decoration: none; color: var(--paper-mid); }
+  .nav-links a:hover { color: var(--paper); }
+  .nav-cta {
+    font-size: 0.8rem; font-weight: 600; background: var(--green); color: var(--ink);
+    padding: 0.6rem 1.2rem; border-radius: 999px; text-decoration: none;
+  }
+
+  /* HERO — flat, typography-led, no photo */
+  .hero { padding: 5.5rem 0 3rem; border-bottom: 1px solid var(--line); }
+  .hero-label {
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--green); font-weight: 600; margin-bottom: 1.25rem;
+  }
+  .hero-title {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.02; letter-spacing: -0.02em;
+    max-width: 850px; color: var(--paper);
+  }
+  .hero-sub { font-size: 1.05rem; color: var(--paper-mid); max-width: 480px; margin-top: 1.75rem; line-height: 1.7; }
+  .hero-actions { display: flex; gap: 0.9rem; margin-top: 2.25rem; flex-wrap: wrap; }
+  .btn-solid {
+    background: var(--paper); color: var(--ink); padding: 0.85rem 1.6rem; border-radius: 999px;
+    text-decoration: none; font-size: 0.9rem; font-weight: 600; display: inline-block;
+    transition: background 0.15s;
+  }
+  .btn-solid:hover { background: #fff; }
+  .btn-outline {
+    border: 1px solid var(--paper-mid); color: var(--paper); padding: 0.85rem 1.6rem; border-radius: 999px;
+    text-decoration: none; font-size: 0.9rem; font-weight: 600; display: inline-block;
+  }
+
+  /* Full-width venue photo band */
+  .photo-band { border-bottom: 1px solid var(--line); }
+  .photo-band-media { width: 100%; aspect-ratio: 2 / 1; overflow: hidden; }
+  .photo-band-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo-band-caption {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 1.1rem 0;
+  }
+  .photo-band-caption .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+  .photo-band-caption p { font-size: 0.9rem; color: var(--paper-mid); }
+  .photo-band-caption strong { color: var(--paper); font-weight: 600; }
+
+  @media (max-width: 700px) {
+    .photo-band-media { aspect-ratio: 4 / 3; }
+  }
+
+  /* NEXT MEETUP STRIP */
+  .feature { padding: 3.5rem 0; border-bottom: 1px solid var(--line); }
+  .feature-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: stretch; }
+  .feature-photo { border-radius: 18px; overflow: hidden; aspect-ratio: 4/3; }
+  .feature-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .feature-caption { font-size: 0.8rem; color: var(--paper-mid); margin-top: 0.75rem; }
+
+  .next-card {
+    background: var(--card); border: 1px solid var(--line); color: var(--paper); border-radius: 18px; padding: 2rem;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .next-eyebrow { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--green); font-weight: 700; }
+  .next-title { font-family: var(--serif); font-size: 1.5rem; margin: 0.9rem 0 1.25rem; line-height: 1.25; }
+  .next-meta { display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.85rem; color: var(--paper-mid); margin-bottom: 1.75rem; }
+  .next-meta span::before { content: "— "; color: var(--green); }
+
+  @media (max-width: 860px) { .feature-grid { grid-template-columns: 1fr; } }
+
+  /* SECTION HEADS with watermark */
+  .section-head { position: relative; padding: 4rem 0 1rem; overflow: hidden; }
+  .watermark {
+    position: absolute; top: -0.5rem; left: -0.15rem; font-family: var(--serif); font-weight: 600;
+    font-size: clamp(4rem, 14vw, 9rem); color: var(--paper); opacity: 0.045; white-space: nowrap; z-index: 0;
+    pointer-events: none;
+  }
+  .section-head h2 { position: relative; z-index: 1; font-family: var(--serif); font-size: 1.9rem; font-weight: 500; color: var(--paper); }
+  .section-head p { position: relative; z-index: 1; color: var(--paper-mid); margin-top: 0.5rem; max-width: 520px; }
+
+  /* PAST MEETUPS GRID */
+  .past-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; padding-bottom: 4rem; }
+  .past-card { display: flex; flex-direction: column; gap: 0.85rem; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1rem; }
+  .past-photo { border-radius: 12px; overflow: hidden; aspect-ratio: 5/4; }
+  .past-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .past-date { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--green); font-weight: 600; }
+  .past-title { font-family: var(--serif); font-size: 1.1rem; line-height: 1.3; color: var(--paper); }
+  .past-desc { font-size: 0.85rem; color: var(--paper-mid); line-height: 1.6; }
+
+  @media (max-width: 860px) { .past-grid { grid-template-columns: 1fr; } }
+
+  /* ORGANIZERS */
+  .organizers { border-top: 1px solid var(--line); padding: 4rem 0; }
+  .organizers-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem; }
+  .org-card { display: flex; gap: 1.1rem; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 1.5rem; }
+  .org-avatar { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .org-name { font-family: var(--serif); font-size: 1.05rem; color: var(--paper); }
+  .org-role { font-size: 0.75rem; color: var(--green); font-weight: 600; margin: 0.15rem 0 0.5rem; }
+  .org-bio { font-size: 0.83rem; color: var(--paper-mid); line-height: 1.6; }
+
+  @media (max-width: 700px) { .organizers-grid { grid-template-columns: 1fr; } }
+
+  /* CTA STRIP */
+  .cta-strip { border-top: 1px solid var(--line); padding: 4rem 0; text-align: center; }
+  .cta-strip h2 { font-family: var(--serif); font-size: 2rem; font-weight: 500; margin-bottom: 0.75rem; color: var(--paper); }
+  .cta-strip p { color: var(--paper-mid); margin-bottom: 1.75rem; }
+
+  footer { border-top: 1px solid var(--line); padding: 2rem 0; font-size: 0.8rem; color: var(--paper-mid); text-align: center; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <a class="brand" href="#">Boston UX Content</a>
+    <ul class="nav-links">
+      <li><a href="#meetups">Meetups</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="#next">RSVP</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-label">Boston · Monthly · Free to attend</div>
+    <h1 class="hero-title">A gathering place for people who write the words behind good design.</h1>
+    <p class="hero-sub">Monthly meetups for content designers, UX writers, content strategists, and content-adjacent folks across the Boston area.</p>
+    <div class="hero-actions">
+      <a class="btn-solid" href="#next">See the next meetup</a>
+      <a class="btn-outline" href="#contact">Join our Slack</a>
+    </div>
+  </div>
+</section>
+
+<!-- Full-width venue photo, replace src if a new BPL photo is preferred -->
+<section class="photo-band">
+  <div class="photo-band-media">
+    <img src="assets/bpl-band.jpg" alt="The Boston Public Library at dusk, Copley Square" />
+  </div>
+  <div class="wrap photo-band-caption">
+    <span class="dot"></span>
+    <p>Most of our meetups happen at the <strong>Boston Public Library</strong> in Copley Square — free, welcoming, and full of good light.</p>
+  </div>
+</section>
+
+<section class="feature" id="next">
+  <div class="wrap feature-grid">
+    <div>
+      <div class="feature-photo">
+        <img src="../meetup-jun-11-2026.png" alt="Attendees at a workshop inside the Boston Public Library" />
+      </div>
+      <div class="feature-caption">From our last workshop at the Boston Public Library, June 2026.</div>
+    </div>
+    <div class="next-card">
+      <div>
+        <div class="next-eyebrow">Next meetup</div>
+        <div class="next-title">Career support, part 3: Work on your job hunting artifacts with friends</div>
+        <div class="next-meta">
+          <span>Aug 19, 2026 · 6 PM</span>
+          <span>Boston Public Library</span>
+          <span>Drop-in — no RSVP required to attend, but let us know you're coming</span>
+        </div>
+      </div>
+      <a class="btn-solid" href="https://www.eventbrite.com/e/1996319344900?aff=oddtdtcreator" target="_blank" rel="noopener noreferrer">RSVP on Eventbrite</a>
+    </div>
+  </div>
+</section>
+
+<section id="meetups">
+  <div class="wrap section-head">
+    <div class="watermark">BOSTON</div>
+    <h2>Past meetups</h2>
+    <p>A running record of what we've talked about, made, and celebrated together.</p>
+  </div>
+  <div class="wrap past-grid">
+    <div class="past-card">
+      <div class="past-photo"><img src="../meetup-apr-30-2026.png" alt="Photo from the April 30, 2026 meetup at the Boston Public Library" /></div>
+      <div class="past-date">Apr 30, 2026 · Discussion</div>
+      <div class="past-title">How to land a content design role in 2026</div>
+      <div class="past-desc">An open, honest, and practical conversation about what it takes to land a content design job today.</div>
+    </div>
+    <div class="past-card">
+      <div class="past-photo"><img src="../meetup-feb-12-2026.png" alt="Group photo from the February 12, 2026 meetup" /></div>
+      <div class="past-date">Feb 12, 2026 · Discussion</div>
+      <div class="past-title">Shaping what's next</div>
+      <div class="past-desc">A big brainstorm about the purpose of the meetup, and what this community should provide.</div>
+    </div>
+    <div class="past-card">
+      <div class="past-photo"><img src="../meetup-dec-17-2025.png" alt="Group photo from the December 17, 2025 meetup at the Boston Public Library" /></div>
+      <div class="past-date">Dec 17, 2025 · Talk</div>
+      <div class="past-title">Kickoff with special guest: Jane Ruffino</div>
+      <div class="past-desc">Jane's talk about facilitation as leadership reinforced that content is all about relationships.</div>
+    </div>
+  </div>
+</section>
+
+<section class="organizers" id="about">
+  <div class="wrap">
+    <div class="section-head" style="padding-top:0;">
+      <h2>Who's behind it</h2>
+      <p>Two content designers who wanted more community in Boston, so they built one.</p>
+    </div>
+    <div class="organizers-grid">
+      <div class="org-card">
+        <img class="org-avatar" src="../laura-wixted-linkedin.jpg" alt="Laura Wixted" onerror="this.remove()" />
+        <div>
+          <div class="org-name">Laura Wixted</div>
+          <div class="org-role">Lead Organizer</div>
+          <p class="org-bio">15+ years of content design and technical writing experience across ed tech, cybersecurity, and civic tech.</p>
+        </div>
+      </div>
+      <div class="org-card">
+        <img class="org-avatar" src="../ali-burke-linkedin.jpg" alt="Ali Burke" onerror="this.remove()" />
+        <div>
+          <div class="org-name">Alison (Ali) Burke</div>
+          <div class="org-role">Co-organizer</div>
+          <p class="org-bio">10+ years of startup and agency experience building brand voices and content strategies across industries.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip" id="contact">
+  <div class="wrap">
+    <h2>Come say hello</h2>
+    <p>Join our Slack, or come to the next in-person meetup.</p>
+    <a class="btn-solid" href="https://join.slack.com/t/bostonuxcontent/shared_invite/zt-3yydsgped-nefE6WnZR3MtWLZqKL7OAg" target="_blank" rel="noopener noreferrer">Join the Slack</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Boston UX Content · Concept 3 — Reading Room (prototype, not linked from the live site)</div>
+</footer>
+
+</body>
+</html>
