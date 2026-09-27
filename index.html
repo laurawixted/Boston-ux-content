@@ -164,25 +164,29 @@
         display: none;
         flex-direction: column;
         align-items: stretch;
-        gap: 0;
+        gap: 4px;
         position: absolute;
         top: calc(100% + 8px);
         right: 1.25rem;
-        min-width: 160px;
+        min-width: 180px;
         background: var(--navy);
         border: 1px solid var(--border);
         border-radius: 8px;
-        padding: 0.4rem 0;
+        padding: 0.5rem;
         box-shadow: 0 8px 24px rgba(0,0,0,0.35);
       }
 
       nav.nav-open .nav-links { display: flex; }
 
       .nav-links a {
-        padding: 12px 20px;
+        display: block;
+        padding: 14px 20px;
         font-size: 15px;
         white-space: nowrap;
+        border-radius: 6px;
       }
+
+      .nav-links a:active { background: var(--blue-mid); }
     }
 
     /* ── MAIN CONTENT ── */
@@ -493,7 +497,8 @@
       border-top: 1px solid var(--border);
     }
 
-    .next-meetup-copy { padding-bottom: 2rem; }
+    .next-meetup-copy { padding-bottom: 0.5rem; }
+    .next-meetup-note { color: var(--text-muted); font-size: 0.85rem; padding-bottom: 2rem; }
 
     .page-body > .events-section-label:first-child {
       margin-top: 0;
@@ -979,7 +984,8 @@
 
     <div class="wrap page-body">
       <h3 class="events-section-label" id="next-meetup">Next meetup</h3>
-      <p class="next-meetup-copy">The next meetup will be in late Oct or mid Nov. Check back soon.</p>
+      <p class="next-meetup-copy">The next meetup will be in late October or mid-November.</p>
+      <p class="next-meetup-note">Check back soon for the exact date.</p>
 
       <h3 class="events-section-label">Past meetups</h3>
       <div class="meetup-cards">
@@ -993,7 +999,7 @@
         </div>
 
         <div class="meetup-card">
-          <img src="library-room.jpeg" alt="Photo from the August 19, 2026 meetup" class="meetup-card-image">
+          <img src="meetup-aug-2026.png" alt="Photo from the August 19, 2026 meetup" class="meetup-card-image">
           <div class="meetup-card-body">
             <div class="meetup-card-date">Aug 19, 2026</div>
             <h4>Career support, part 3: Admin night</h4>
