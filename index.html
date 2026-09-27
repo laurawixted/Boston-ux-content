@@ -53,9 +53,9 @@
     }
 
     .nav-row {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
+      display: flex;
       align-items: center;
+      gap: 2rem;
       height: 72px;
     }
 
@@ -65,7 +65,7 @@
       gap: 12px;
       text-decoration: none;
       cursor: pointer;
-      justify-self: start;
+      margin-right: auto;
     }
 
     .logo-text {
@@ -77,10 +77,9 @@
       white-space: nowrap;
     }
 
-    .nav-right { justify-self: end; display: flex; align-items: center; gap: 1.75rem; }
+    .nav-right { display: flex; align-items: center; gap: 1.75rem; }
 
     .nav-links {
-      justify-self: center;
       list-style: none;
       display: flex;
       align-items: center;
@@ -165,9 +164,9 @@
       main { min-height: calc(100vh - 56px); }
     }
 
-    #next, #meetups, #about, #contact { scroll-margin-top: 72px; }
+    #meetups, #about, #contact, #next-meetup { scroll-margin-top: 72px; }
     @media (max-width: 640px) {
-      #next, #meetups, #about, #contact { scroll-margin-top: 56px; }
+      #meetups, #about, #contact, #next-meetup { scroll-margin-top: 56px; }
     }
 
     /* ── HOME ── */
@@ -261,7 +260,6 @@
       font-size: 14px;
       color: var(--text-mid);
     }
-    .photo-band-caption .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
     .photo-band-caption strong { color: var(--text); font-weight: 600; }
 
     @media (max-width: 640px) {
@@ -454,12 +452,20 @@
 
     .events-section-label {
       font-family: var(--serif);
-      font-size: 1.25rem;
+      font-size: 1.75rem;
       font-weight: 500;
       color: var(--text-mid);
       margin: 2.5rem 0 1rem;
       padding-top: 2rem;
       border-top: 1px solid var(--border);
+    }
+
+    .next-meetup-copy { padding-bottom: 2rem; }
+
+    .page-body > .events-section-label:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
     }
 
     .meetup-cards {
@@ -519,6 +525,8 @@
     }
 
     .meetup-card-body p { font-size: 13px; color: var(--text-mid); line-height: 1.65; }
+    .meetup-card-body p a { color: var(--blue); text-decoration: underline; }
+    .meetup-card-body p a:hover { color: var(--blue-lt); }
 
     @media (max-width: 900px) {
       .meetup-cards { grid-template-columns: 1fr 1fr; }
@@ -650,11 +658,16 @@
     }
 
     .organizer-card {
+      display: block;
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 1.75rem 1.5rem;
       background: var(--sky-pale);
+      text-decoration: none;
+      transition: border-color 0.15s;
     }
+
+    .organizer-card:hover { border-color: var(--blue); }
 
     .organizer-card .avatar { width: 64px; height: 64px; margin-bottom: 1rem; }
     .organizer-card h4 { font-family: var(--serif); font-size: 1.25rem; font-weight: 500; color: var(--text); margin-bottom: 4px; }
@@ -886,7 +899,7 @@
   </ul>
 
   <div class="nav-right">
-    <a class="nav-cta" href="#next">RSVP</a>
+    <!-- RSVP hidden until next meetup is planned: <a class="nav-cta" href="#next-meetup">RSVP</a> -->
     <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle menu" aria-expanded="false">
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect class="ham-top" x="2" y="5"  width="18" height="2" rx="1" fill="white"/>
@@ -907,7 +920,7 @@
     <p class="hero-sub">Monthly meetups for content designers, UX writers, content strategists, or any content-adjacent UX professional</p>
 
     <div class="hero-cta">
-      <a class="btn-primary" href="#next">See the next meetup</a>
+      <a class="btn-primary" href="#next-meetup">See the next meetup</a>
       <a class="btn-ghost" href="https://join.slack.com/t/bostonuxcontent/shared_invite/zt-3yydsgped-nefE6WnZR3MtWLZqKL7OAg" target="_blank" rel="noopener noreferrer">Join our Slack</a>
     </div>
     </div>
@@ -916,57 +929,40 @@
   <!-- Real photo of our venue -->
   <section class="photo-band">
     <div class="photo-band-media">
-      <img src="bpl-library.jpg" alt="The Boston Public Library at dusk, Copley Square" />
+      <img src="bpl-library.jpg?v=2" alt="The Boston Public Library at dusk, Copley Square" />
     </div>
     <div class="wrap photo-band-caption">
-      <span class="dot"></span>
       <p>Most of our meetups happen at the <strong>Boston Public Library</strong> in Copley Square.</p>
     </div>
   </section>
 
-  <!-- Keep in sync with the first Upcoming meetup below -->
-  <section class="feature" id="next">
-    <div class="wrap feature-grid">
-        <div>
-          <div class="feature-placeholder">Photo coming soon</div>
-        </div>
-        <div class="next-card">
-          <div>
-            <div class="next-eyebrow">Next meetup</div>
-            <div class="next-title">Details coming soon</div>
-            <div class="next-meta">
-              <span>Date</span>
-              <span>Place</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
   <!-- MEETUPS -->
   <section id="meetups">
     <div class="wrap page-header">
-      <h2>Past meetups</h2>
-      <p>A running record of what we've talked about, made, and celebrated together.</p>
+      <h2>Meetups</h2>
     </div>
 
     <div class="wrap page-body">
+      <h3 class="events-section-label" id="next-meetup">Next meetup</h3>
+      <p class="next-meetup-copy">The next meetup will be in late Oct or mid Nov. Check back soon.</p>
+
+      <h3 class="events-section-label">Past meetups</h3>
       <div class="meetup-cards">
         <div class="meetup-card">
-          <div class="meetup-card-image meetup-card-placeholder">Photo coming soon</div>
+          <img src="meetup-sep-17-2026.jpeg" alt="Photo from the September 17, 2026 meetup" class="meetup-card-image">
           <div class="meetup-card-body">
-            <div class="meetup-card-date">Sep 2026</div>
-            <h3>Details coming soon</h3>
-            <p>Details coming soon.</p>
+            <div class="meetup-card-date">Sep 17, 2026</div>
+            <h3>Content-First Design with Sarah Johnson</h3>
+            <p>We're deeply grateful to <a href="https://contentfirstdesign.com/" target="_blank" rel="noopener noreferrer">Sarah Johnson</a>, who gave a riveting talk called <strong>Stop message misfires with the Content-first Framework</strong> that clarified the importance of a content-first approach to digital product design and development. As one attendee put it, "that's the most invigorating and substantive content design conversation I've had in ages. A rare pleasure!"</p>
           </div>
         </div>
 
         <div class="meetup-card">
-          <div class="meetup-card-image meetup-card-placeholder">Photo coming soon</div>
+          <img src="library-room.jpeg" alt="Photo from the August 19, 2026 meetup" class="meetup-card-image">
           <div class="meetup-card-body">
-            <div class="meetup-card-date">Aug 2026</div>
-            <h3>Details coming soon</h3>
-            <p>Details coming soon.</p>
+            <div class="meetup-card-date">Aug 19, 2026</div>
+            <h3>Career support, part 3: Admin night</h3>
+            <p>This was a laid back, working session where we chatted about formatting resumes for ATS scanners, preparing for interviews with AI bots, and how to not lose your mind tailoring resumes, cover letters, portfolios, and case studies for each and every job application.</p>
           </div>
         </div>
 
@@ -980,7 +976,7 @@
         </div>
 
         <div class="meetup-card">
-          <img src="meetup-jun-11-2026.jpg" alt="Photo from the June 11, 2026 meetup" class="meetup-card-image">
+          <img src="meetup-jun-11-2026.jpg?v=2" alt="Photo from the June 11, 2026 meetup" class="meetup-card-image">
           <div class="meetup-card-body">
             <div class="meetup-card-date">Jun 11, 2026</div>
             <h3>Career support, part 2: Connecting the dots between your job hunting artifacts</h3>
@@ -1026,19 +1022,19 @@
     </div>
 
     <div class="wrap organizer-grid">
-      <div class="organizer-card">
+      <a class="organizer-card" href="https://www.linkedin.com/in/laurawixted/" target="_blank" rel="noopener noreferrer">
         <div class="avatar"><img src="laura-wixted-linkedin.jpg" alt="Laura Wixted" onerror="this.remove(); this.parentElement.textContent='LW';" /></div>
         <h4>Laura Wixted</h4>
         <div class="organizer-role">Lead organizer</div>
         <p>15+ years of content design and technical writing experience across ed tech, cybersecurity, and civic tech.</p>
-      </div>
+      </a>
 
-      <div class="organizer-card">
+      <a class="organizer-card" href="https://www.linkedin.com/in/alison-burke-a4825915/" target="_blank" rel="noopener noreferrer">
         <div class="avatar"><img src="ali-burke-linkedin.jpg" alt="Ali Burke" onerror="this.remove(); this.parentElement.textContent='AB';" /></div>
         <h4>Alison (Ali) Burke</h4>
         <div class="organizer-role">Co-organizer</div>
         <p>10+ years of startup and agency experience building brand voices and content strategies across industries.</p>
-      </div>
+      </a>
     </div>
 
   </section>
