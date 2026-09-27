@@ -36,6 +36,39 @@
     .wrap { max-width: 1180px; margin: 0 auto; padding: 0 3.5rem; }
     @media (max-width: 640px) { .wrap { padding: 0 1.25rem; } }
 
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--text);
+      color: var(--navy);
+      padding: 0.75rem 1.25rem;
+      border-radius: 0 0 8px 0;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      z-index: 1001;
+      transition: top 0.15s;
+    }
+    .skip-link:focus { top: 0; }
+
+    a:focus-visible, button:focus-visible, img[tabindex]:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 2px;
+    }
+
     body {
       font-family: var(--sans);
       color: var(--text);
@@ -516,7 +549,7 @@
       margin-bottom: 0.5rem;
     }
 
-    .meetup-card-body h3 {
+    .meetup-card-body h4 {
       font-family: var(--serif);
       font-size: 1.05rem;
       color: var(--text);
@@ -670,7 +703,7 @@
     .organizer-card:hover { border-color: var(--blue); }
 
     .organizer-card .avatar { width: 64px; height: 64px; margin-bottom: 1rem; }
-    .organizer-card h4 { font-family: var(--serif); font-size: 1.25rem; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+    .organizer-card h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 500; color: var(--text); margin-bottom: 4px; }
     .organizer-card .organizer-role { font-size: 13px; color: var(--blue); font-weight: 600; margin-bottom: 0.75rem; }
     .organizer-card p { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
 
@@ -885,6 +918,8 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
 <!-- ── TOP NAV ── -->
 <nav>
 <div class="wrap nav-row">
@@ -912,7 +947,7 @@
 </nav>
 
 <!-- ── MAIN ── -->
-<main>
+<main id="main-content">
 
   <section class="hero">
     <div class="wrap">
@@ -921,7 +956,7 @@
 
     <div class="hero-cta">
       <a class="btn-primary" href="#next-meetup">See the next meetup</a>
-      <a class="btn-ghost" href="https://join.slack.com/t/bostonuxcontent/shared_invite/zt-3yydsgped-nefE6WnZR3MtWLZqKL7OAg" target="_blank" rel="noopener noreferrer">Join our Slack</a>
+      <a class="btn-ghost" href="https://join.slack.com/t/bostonuxcontent/shared_invite/zt-3yydsgped-nefE6WnZR3MtWLZqKL7OAg" target="_blank" rel="noopener noreferrer">Join our Slack<span class="visually-hidden"> (opens in new tab)</span></a>
     </div>
     </div>
   </section>
@@ -952,8 +987,8 @@
           <img src="meetup-sep-17-2026.jpeg" alt="Photo from the September 17, 2026 meetup" class="meetup-card-image">
           <div class="meetup-card-body">
             <div class="meetup-card-date">Sep 17, 2026</div>
-            <h3>Content-First Design with Sarah Johnson</h3>
-            <p>We're deeply grateful to <a href="https://contentfirstdesign.com/" target="_blank" rel="noopener noreferrer">Sarah Johnson</a>, who gave a riveting talk called <strong>Stop message misfires with the Content-first Framework</strong> that clarified the importance of a content-first approach to digital product design and development. As one attendee put it, "that's the most invigorating and substantive content design conversation I've had in ages. A rare pleasure!"</p>
+            <h4>Content-First Design with Sarah Johnson</h4>
+            <p>We're deeply grateful to <a href="https://contentfirstdesign.com/" target="_blank" rel="noopener noreferrer">Sarah Johnson<span class="visually-hidden"> (opens in new tab)</span></a>, who gave a riveting talk called <strong>Stop message misfires with the Content-first Framework</strong> that clarified the importance of a content-first approach to digital product design and development. As one attendee put it, "That's the most invigorating and substantive content design conversation I've had in ages. A rare pleasure!"</p>
           </div>
         </div>
 
@@ -961,7 +996,7 @@
           <img src="library-room.jpeg" alt="Photo from the August 19, 2026 meetup" class="meetup-card-image">
           <div class="meetup-card-body">
             <div class="meetup-card-date">Aug 19, 2026</div>
-            <h3>Career support, part 3: Admin night</h3>
+            <h4>Career support, part 3: Admin night</h4>
             <p>This was a laid back, working session where we chatted about formatting resumes for ATS scanners, preparing for interviews with AI bots, and how to not lose your mind tailoring resumes, cover letters, portfolios, and case studies for each and every job application.</p>
           </div>
         </div>
@@ -970,8 +1005,8 @@
           <img src="meetup-jul-30-2026.jpeg" alt="Photo from the July 30, 2026 meetup" class="meetup-card-image">
           <div class="meetup-card-body">
             <div class="meetup-card-date">Jul 30, 2026</div>
-            <h3>Summer Happy Hour!</h3>
-            <p>Our 5th meetup was very relaxing. We enjoyed a few drinks together, saw some familar faces, and met some new friends.</p>
+            <h4>Summer Happy Hour!</h4>
+            <p>Our 5th meetup was very relaxing. We enjoyed a few drinks together, saw some familiar faces, and met some new friends.</p>
           </div>
         </div>
 
@@ -979,7 +1014,7 @@
           <img src="meetup-jun-11-2026.jpg?v=2" alt="Photo from the June 11, 2026 meetup" class="meetup-card-image">
           <div class="meetup-card-body">
             <div class="meetup-card-date">Jun 11, 2026</div>
-            <h3>Career support, part 2: Connecting the dots between your job hunting artifacts</h3>
+            <h4>Career support, part 2: Connecting the dots between your job hunting artifacts</h4>
             <p>Our 4th UX Content meetup about finding a job in UX was inspiring. Thanks to our brave and talented volunteer, ⭐ Shivali Meenakshi Murali ⭐, who walked us through her job hunting artifacts, we swapped stories as candidates and hiring managers to clarify how to make each artifact resonate and how to tie them all together into a cohesive narrative.</p>
           </div>
         </div>
@@ -988,7 +1023,7 @@
           <img src="meetup-apr-30-2026.png" alt="Photo from the April 30, 2026 meetup" class="meetup-card-image">
           <div class="meetup-card-body">
             <div class="meetup-card-date">Apr 30, 2026</div>
-            <h3>Career support: How to land a content design role in 2026</h3>
+            <h4>Career support: How to land a content design role in 2026</h4>
             <p>Our third meetup was an open, honest, and practical conversation about what it takes to land a content design job in 2026. Attendees shared their experiences, challenges, and strategies for career growth in the field.</p>
           </div>
         </div>
@@ -997,7 +1032,7 @@
           <img src="meetup-feb-12-2026.png" alt="Group photo from the February 12, 2026 meetup" class="meetup-card-image">
           <div class="meetup-card-body">
             <div class="meetup-card-date">Feb 12, 2026</div>
-            <h3>Shaping what's next</h3>
+            <h4>Shaping what's next</h4>
             <p>Our second meetup was a big brainstorm and discussion about the purpose of the meetup. We used a Mad Lib exercise to clarify our mission and vision, and walked away with valuable insights into the community's needs and aspirations.</p>
           </div>
         </div>
@@ -1006,7 +1041,7 @@
           <img src="meetup-dec-17-2025.png" alt="Group photo from the December 17, 2025 meetup" class="meetup-card-image">
           <div class="meetup-card-body">
             <div class="meetup-card-date">Dec 17, 2025</div>
-            <h3>Kickoff with special guest: Jane Ruffino</h3>
+            <h4>Kickoff with special guest: Jane Ruffino</h4>
             <p>We kicked things off with ⭐ Jane Ruffino ⭐, whose talk about facilitation as leadership beautifully reinforced that content is all about relationships.</p>
           </div>
         </div>
@@ -1024,14 +1059,14 @@
     <div class="wrap organizer-grid">
       <a class="organizer-card" href="https://www.linkedin.com/in/laurawixted/" target="_blank" rel="noopener noreferrer">
         <div class="avatar"><img src="laura-wixted-linkedin.jpg" alt="Laura Wixted" onerror="this.remove(); this.parentElement.textContent='LW';" /></div>
-        <h4>Laura Wixted</h4>
+        <h3>Laura Wixted<span class="visually-hidden"> (opens LinkedIn profile in new tab)</span></h3>
         <div class="organizer-role">Lead organizer</div>
-        <p>15+ years of content design and technical writing experience across ed tech, cybersecurity, and civic tech.</p>
+        <p>15+ years of content design and technical writing across ed tech, cybersecurity, fintech, and civic tech.</p>
       </a>
 
       <a class="organizer-card" href="https://www.linkedin.com/in/alison-burke-a4825915/" target="_blank" rel="noopener noreferrer">
         <div class="avatar"><img src="ali-burke-linkedin.jpg" alt="Ali Burke" onerror="this.remove(); this.parentElement.textContent='AB';" /></div>
-        <h4>Alison (Ali) Burke</h4>
+        <h3>Alison (Ali) Burke<span class="visually-hidden"> (opens LinkedIn profile in new tab)</span></h3>
         <div class="organizer-role">Co-organizer</div>
         <p>10+ years of startup and agency experience building brand voices and content strategies across industries.</p>
       </a>
@@ -1044,7 +1079,7 @@
     <div class="wrap contact-hello">
       <h2>Come say hello</h2>
       <p>Join our Slack, or come to the next in-person meetup.</p>
-      <a href="https://join.slack.com/t/bostonuxcontent/shared_invite/zt-3yydsgped-nefE6WnZR3MtWLZqKL7OAg" target="_blank" class="btn-primary">Join the Slack</a>
+      <a href="https://join.slack.com/t/bostonuxcontent/shared_invite/zt-3yydsgped-nefE6WnZR3MtWLZqKL7OAg" target="_blank" class="btn-primary">Join the Slack<span class="visually-hidden"> (opens in new tab)</span></a>
     </div>
   </section>
 
@@ -1056,7 +1091,7 @@
 
 <div class="toast" id="toast">Message sent! We'll be in touch soon.</div>
 
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged photo" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close image">&times;</button>
   <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
 </div>
@@ -1071,26 +1106,40 @@
     btn.classList.toggle('active', !isOpen);
   }
 
-  function openLightbox(src, alt) {
+  function openLightbox(src, alt, triggerEl) {
     const overlay = document.getElementById('lightbox');
     const img = document.getElementById('lightbox-img');
+    lastFocusedEl = triggerEl || document.activeElement;
     img.src = src;
     img.alt = alt;
     overlay.classList.add('show');
     document.body.style.overflow = 'hidden';
+    document.querySelector('.lightbox-close').focus();
   }
 
   function closeLightbox() {
     document.getElementById('lightbox').classList.remove('show');
     document.body.style.overflow = '';
+    lastFocusedEl?.focus();
   }
+
+  let lastFocusedEl = null;
 
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeLightbox();
   });
 
   document.querySelectorAll('img.meetup-card-image').forEach(img => {
-    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    img.tabIndex = 0;
+    img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', `Enlarge photo: ${img.alt}`);
+    img.addEventListener('click', () => openLightbox(img.src, img.alt, img));
+    img.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(img.src, img.alt, img);
+      }
+    });
   });
 
   function toggleNav() {
