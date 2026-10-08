@@ -566,6 +566,26 @@
     .meetup-card-body p a { color: var(--blue); text-decoration: underline; }
     .meetup-card-body p a:hover { color: var(--blue-lt); }
 
+    .meetup-card-rsvp { text-align: right; margin-top: 0.75rem; }
+    .meetup-card-rsvp a {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.5rem 1.1rem;
+      border-radius: 999px;
+    }
+    .meetup-card-rsvp a:hover { background: var(--blue-lt); }
+
+    /* Stretched link: the RSVP anchor's ::after covers the whole card */
+    .meetup-card-clickable { position: relative; transition: box-shadow 0.2s, border-color 0.2s; }
+    .meetup-card-clickable:hover { box-shadow: 0 12px 40px rgba(30,60,120,0.45), 0 0 0 1px var(--blue); border-color: var(--blue); }
+    .meetup-card-clickable .meetup-card-rsvp a::after { content: ""; position: absolute; inset: 0; }
+    .meetup-card-clickable .meetup-card-body p a { position: relative; z-index: 1; }
+    .meetup-card-clickable img.meetup-card-image { cursor: pointer; }
+
     @media (max-width: 900px) {
       .meetup-cards { grid-template-columns: 1fr 1fr; }
     }
@@ -984,8 +1004,18 @@
 
     <div class="wrap page-body">
       <h3 class="events-section-label" id="next-meetup">Next meetup</h3>
-      <p class="next-meetup-copy">The next meetup will be in late October or mid-November.</p>
-      <p class="next-meetup-note">Check back soon for the exact date.</p>
+      <div class="meetup-cards">
+        <div class="meetup-card meetup-card-clickable">
+          <img src="images/scott-kubie-youtube-cropped.png" alt="Scott Kubie" class="meetup-card-image no-zoom">
+          <div class="meetup-card-body">
+            <div class="meetup-card-date">Wed, Oct 28, 2026 &middot; 6-8 PM</div>
+            <h4>Good Products Depend on Content Strategy</h4>
+            <p>Join Boston UX Content for an evening with Scott Kubie (<a href="https://www.linkedin.com/in/kubie/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in new tab)</span></a>, <a href="https://www.scottkubie.com/" target="_blank" rel="noopener noreferrer">Website<span class="visually-hidden"> (opens in new tab)</span></a>), a leading voice in content strategy and content design, as he makes the case that content strategy isn't just a job title. It's a practice that belongs across your entire product organization.</p>
+            <p><strong>Place:</strong> Boston Public Library, Central branch, 700 Boylston St</p>
+            <div class="meetup-card-rsvp"><a href="https://www.eventbrite.com/e/good-products-depend-on-content-strategy-tickets-2002840030446" target="_blank" rel="noopener noreferrer">RSVP<span class="visually-hidden"> (opens in new tab)</span></a></div>
+          </div>
+        </div>
+      </div>
 
       <h3 class="events-section-label">Past meetups</h3>
       <div class="meetup-cards">
@@ -1135,7 +1165,7 @@
     if (e.key === 'Escape') closeLightbox();
   });
 
-  document.querySelectorAll('img.meetup-card-image').forEach(img => {
+  document.querySelectorAll('img.meetup-card-image:not(.no-zoom)').forEach(img => {
     img.tabIndex = 0;
     img.setAttribute('role', 'button');
     img.setAttribute('aria-label', `Enlarge photo: ${img.alt}`);
