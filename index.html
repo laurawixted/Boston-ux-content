@@ -361,6 +361,9 @@
     }
 
     .page-header p { font-size: 15px; color: var(--text-mid); max-width: 520px; }
+    #about .page-header p + p { margin-top: 1.25rem; }
+    #about .page-header a { color: var(--blue-lt); text-decoration: underline; text-underline-offset: 3px; }
+    #about .page-header a:hover { color: var(--text); }
 
     .page-body { padding-top: 2.5rem; padding-bottom: 2.5rem; }
 
@@ -565,6 +568,26 @@
     .meetup-card-body p { font-size: 13px; color: var(--text-mid); line-height: 1.65; }
     .meetup-card-body p a { color: var(--blue); text-decoration: underline; }
     .meetup-card-body p a:hover { color: var(--blue-lt); }
+
+    .meetup-card-rsvp { text-align: right; margin-top: 0.75rem; }
+    .meetup-card-rsvp a {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 0.5rem 1.1rem;
+      border-radius: 999px;
+    }
+    .meetup-card-rsvp a:hover { background: var(--blue-lt); }
+
+    /* Stretched link: the RSVP anchor's ::after covers the whole card */
+    .meetup-card-clickable { position: relative; transition: box-shadow 0.2s, border-color 0.2s; }
+    .meetup-card-clickable:hover { box-shadow: 0 12px 40px rgba(30,60,120,0.45), 0 0 0 1px var(--blue); border-color: var(--blue); }
+    .meetup-card-clickable .meetup-card-rsvp a::after { content: ""; position: absolute; inset: 0; }
+    .meetup-card-clickable .meetup-card-body p a { position: relative; z-index: 1; }
+    .meetup-card-clickable img.meetup-card-image { cursor: pointer; }
 
     @media (max-width: 900px) {
       .meetup-cards { grid-template-columns: 1fr 1fr; }
@@ -957,7 +980,7 @@
   <section class="hero">
     <div class="wrap">
     <h1 class="hero-title">Welcome to the Boston UX Content meetups</h1>
-    <p class="hero-sub">Monthly meetups for content designers, UX writers, content strategists, or any content-adjacent UX professional</p>
+    <p class="hero-sub">Monthly meetups for content designers, UX writers, content strategists, and other content-adjacent UX professionals</p>
 
     <div class="hero-cta">
       <a class="btn-primary" href="#next-meetup">See the next meetup</a>
@@ -971,21 +994,29 @@
     <div class="photo-band-media">
       <img src="bpl-library.jpg?v=2" alt="The Boston Public Library at dusk, Copley Square" />
     </div>
-    <div class="wrap photo-band-caption">
-      <p>Most of our meetups happen at the <strong>Boston Public Library</strong> in Copley Square.</p>
-    </div>
   </section>
 
   <!-- MEETUPS -->
   <section id="meetups">
     <div class="wrap page-header">
       <h2>Meetups</h2>
+      <p>Most of our meetups happen at the <strong>Boston Public Library</strong> in Copley Square.</p>
     </div>
 
     <div class="wrap page-body">
       <h3 class="events-section-label" id="next-meetup">Next meetup</h3>
-      <p class="next-meetup-copy">The next meetup will be in late October or mid-November.</p>
-      <p class="next-meetup-note">Check back soon for the exact date.</p>
+      <div class="meetup-cards">
+        <div class="meetup-card meetup-card-clickable">
+          <img src="images/scott-kubie-youtube-cropped.png" alt="Scott Kubie" class="meetup-card-image no-zoom">
+          <div class="meetup-card-body">
+            <div class="meetup-card-date">Wed, Oct 28, 2026 &middot; 6&ndash;8 PM</div>
+            <h4>Good Products Depend on Content Strategy</h4>
+            <p>Join us for an evening with <strong>Scott Kubie</strong> (<a href="https://www.linkedin.com/in/kubie/" target="_blank" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in new tab)</span></a>, <a href="https://www.scottkubie.com/" target="_blank" rel="noopener noreferrer">Website<span class="visually-hidden"> (opens in new tab)</span></a>), a leading voice in content strategy and content design, as he makes the case that content strategy isn't just a job title. It's a practice that belongs across your entire product organization.</p>
+            <p><strong>Place:</strong> Boston Public Library, Central branch, 700 Boylston St, Boston</p>
+            <div class="meetup-card-rsvp"><a href="https://www.eventbrite.com/e/good-products-depend-on-content-strategy-tickets-2002840030446" target="_blank" rel="noopener noreferrer">RSVP<span class="visually-hidden"> (opens in new tab)</span></a></div>
+          </div>
+        </div>
+      </div>
 
       <h3 class="events-section-label">Past meetups</h3>
       <div class="meetup-cards">
@@ -994,7 +1025,7 @@
           <div class="meetup-card-body">
             <div class="meetup-card-date">Sep 17, 2026</div>
             <h4>Content-First Design with Sarah Johnson</h4>
-            <p>We're deeply grateful to <a href="https://contentfirstdesign.com/" target="_blank" rel="noopener noreferrer">Sarah Johnson<span class="visually-hidden"> (opens in new tab)</span></a>, who gave a riveting talk called <strong>Stop message misfires with the Content-first Framework</strong> that clarified the importance of a content-first approach to digital product design and development. As one attendee put it, "That's the most invigorating and substantive content design conversation I've had in ages. A rare pleasure!"</p>
+            <p>We're deeply grateful to <a href="https://contentfirstdesign.com/" target="_blank" rel="noopener noreferrer">Sarah Johnson<span class="visually-hidden"> (opens in new tab)</span></a>, who gave a riveting talk called <strong>Stop message misfires with the Content-First Framework</strong> that clarified the importance of a content-first approach to digital product design and development. As one attendee put it, "That's the most invigorating and substantive content design conversation I've had in ages. A rare pleasure!"</p>
           </div>
         </div>
 
@@ -1003,7 +1034,7 @@
           <div class="meetup-card-body">
             <div class="meetup-card-date">Aug 19, 2026</div>
             <h4>Career support, part 3: Admin night</h4>
-            <p>This was a laid back, working session where we chatted about formatting resumes for ATS scanners, preparing for interviews with AI bots, and how to not lose your mind tailoring resumes, cover letters, portfolios, and case studies for each and every job application.</p>
+            <p>This was a laid-back working session where we chatted about formatting resumes for ATS scanners, preparing for interviews with AI bots, and how not to lose your mind while tailoring resumes, cover letters, portfolios, and case studies for each and every job application.</p>
           </div>
         </div>
 
@@ -1012,7 +1043,7 @@
           <div class="meetup-card-body">
             <div class="meetup-card-date">Jul 30, 2026</div>
             <h4>Summer Happy Hour!</h4>
-            <p>Our 5th meetup was very relaxing. We enjoyed a few drinks together, saw some familiar faces, and met some new friends.</p>
+            <p>Our fifth meetup was very relaxing. We enjoyed a few drinks together, saw some familiar faces, and met some new friends.</p>
           </div>
         </div>
 
@@ -1020,8 +1051,8 @@
           <img src="meetup-jun-11-2026.jpg?v=2" alt="Photo from the June 11, 2026 meetup" class="meetup-card-image">
           <div class="meetup-card-body">
             <div class="meetup-card-date">Jun 11, 2026</div>
-            <h4>Career support, part 2: Connecting the dots between your job hunting artifacts</h4>
-            <p>Our 4th UX Content meetup about finding a job in UX was inspiring. Thanks to our brave and talented volunteer, ⭐ Shivali Meenakshi Murali ⭐, who walked us through her job hunting artifacts, we swapped stories as candidates and hiring managers to clarify how to make each artifact resonate and how to tie them all together into a cohesive narrative.</p>
+            <h4>Career support, part 2: Connecting the dots between your job-hunting artifacts</h4>
+            <p>Our fourth UX Content meetup about finding a job in UX was inspiring. Thanks to our brave and talented volunteer, ⭐ Shivali Meenakshi Murali ⭐, who walked us through her job-hunting artifacts, we swapped stories as candidates and hiring managers to clarify how to make each artifact resonate and how to tie them all together into a cohesive narrative.</p>
           </div>
         </div>
 
@@ -1058,24 +1089,9 @@
   <!-- ABOUT -->
   <section id="about">
     <div class="wrap page-header">
-      <h2>Who's behind it</h2>
-      <p>Two content designers who wanted more community in Boston, so they built one.</p>
-    </div>
-
-    <div class="wrap organizer-grid">
-      <a class="organizer-card" href="https://www.linkedin.com/in/laurawixted/" target="_blank" rel="noopener noreferrer">
-        <div class="avatar"><img src="laura-wixted-linkedin.jpg" alt="Laura Wixted" onerror="this.remove(); this.parentElement.textContent='LW';" /></div>
-        <h3>Laura Wixted<span class="visually-hidden"> (opens LinkedIn profile in new tab)</span></h3>
-        <div class="organizer-role">Lead organizer</div>
-        <p>15+ years of content design and technical writing across ed tech, cybersecurity, fintech, and civic tech.</p>
-      </a>
-
-      <a class="organizer-card" href="https://www.linkedin.com/in/alison-burke-a4825915/" target="_blank" rel="noopener noreferrer">
-        <div class="avatar"><img src="ali-burke-linkedin.jpg" alt="Ali Burke" onerror="this.remove(); this.parentElement.textContent='AB';" /></div>
-        <h3>Alison (Ali) Burke<span class="visually-hidden"> (opens LinkedIn profile in new tab)</span></h3>
-        <div class="organizer-role">Co-organizer</div>
-        <p>10+ years of startup and agency experience building brand voices and content strategies across industries.</p>
-      </a>
+      <h2>How we got started</h2>
+      <p>This community began in December 2025, organized by <a href="https://www.linkedin.com/in/laurawixted/" target="_blank" rel="noopener noreferrer">Laura Wixted<span class="visually-hidden"> (opens LinkedIn profile in new tab)</span></a>, with support from <a href="https://www.linkedin.com/in/alison-burke-a4825915/" target="_blank" rel="noopener noreferrer">Ali Burke<span class="visually-hidden"> (opens LinkedIn profile in new tab)</span></a> and <a href="https://www.linkedin.com/in/georgy/" target="_blank" rel="noopener noreferrer">Georgy Cohen<span class="visually-hidden"> (opens LinkedIn profile in new tab)</span></a>. The goal was simple: give Boston’s content people a regular, friendly place to share ideas, swap job-hunting tips, and learn from guest speakers.</p>
+      <p>The meetups are shaped by the people who show up. If you have an idea for a topic or want to get involved, say hello in <a href="https://join.slack.com/t/bostonuxcontent/shared_invite/zt-3yydsgped-nefE6WnZR3MtWLZqKL7OAg" target="_blank" rel="noopener noreferrer">Slack<span class="visually-hidden"> (opens in new tab)</span></a>.</p>
     </div>
 
   </section>
@@ -1135,7 +1151,7 @@
     if (e.key === 'Escape') closeLightbox();
   });
 
-  document.querySelectorAll('img.meetup-card-image').forEach(img => {
+  document.querySelectorAll('img.meetup-card-image:not(.no-zoom)').forEach(img => {
     img.tabIndex = 0;
     img.setAttribute('role', 'button');
     img.setAttribute('aria-label', `Enlarge photo: ${img.alt}`);
